@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Set;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +20,45 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        Set::factory()->create([
+            'name' => 'science grade 6',
+            'description' => 'may quiz kami bukas about sa solar system',
+            'reviewer' => [
+                [
+                    "term" => "sun",
+                    "definition" => "largest star in the solar system"
+                ],
+                [
+                    "term" => "black hole",
+                    "definition" => "gravity is 10x stronger and has event horizon",
+                ],
+                [
+                    "term" => "jupiter",
+                    "definition" => "gas planet"
+                ]
+            ],
+        'user_id' => 1
+    ]);
+
+    Set::factory()->create([
+            'name' => 'computer',
+            'description' => 'learning about computer parts',
+            'reviewer' => [
+                [
+                    "term" => "network interface card",
+                    "definition" => "a device used to connect to internet"
+                ],
+                [
+                    "term" => "flash drive",
+                    "definition" => "a secondary drive used to store data/files",
+                ],
+                [
+                    "term" => "random access memory",
+                    "definition" => "a primary storage"
+                ]
+            ],
+        'user_id' => 1
+    ]);
     }
 }
