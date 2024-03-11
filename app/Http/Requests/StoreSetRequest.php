@@ -11,7 +11,7 @@ class StoreSetRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreSetRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name" => "required|string|max:500",
+            "description" => "required|string|max:1000",
+            "reviewer" => "required|array",
+            "user_id" => "required|numeric"
         ];
     }
 }

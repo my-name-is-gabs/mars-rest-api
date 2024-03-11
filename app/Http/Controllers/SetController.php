@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSetRequest;
 use App\Models\Set;
 use App\Traits\HttpResponse;
 use Illuminate\Http\Request;
@@ -13,23 +14,33 @@ class SetController extends Controller
      */
     use HttpResponse;
 
-    public function index($id)
+    public function index($user_id)
     {
-        $set = Set::where('user_id', $id);
+        $set = Set::where('user_id', $user_id)->get();
 
-        if (!$set) {
+        if (empty($set)) {
             return $this->error("Error in fetching data", 404);
         }
 
-        return $this->success($set, "Success in fetching all set data" , 200);
+        return $this->success($set, "All data was fetched successfully", 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreSetRequest $request)
     {
-        //
+
+        $created_set = Set::create([
+            "name" => $request->name,
+            "description" => $request->description,
+            "reviewer" => $request->reviewer,
+            "user_id" => $request->user_id
+        ]);
+
+        if(!$created_set) return $this->error("There is an error encoutered");
+
+        return $this->success($created_set, "Set created successfully", 201);
     }
 
     /**

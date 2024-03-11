@@ -26,19 +26,19 @@ class DatabaseSeeder extends Seeder
             'description' => 'may quiz kami bukas about sa solar system',
             'reviewer' => [
                 [
-                    "term" => "sun",
+                    "term" => "sunkisslola",
                     "definition" => "largest star in the solar system"
                 ],
                 [
-                    "term" => "black hole",
+                    "term" => "black holyshit",
                     "definition" => "gravity is 10x stronger and has event horizon",
                 ],
                 [
-                    "term" => "jupiter",
+                    "term" => "jupiterrrss",
                     "definition" => "gas planet"
                 ]
             ],
-        'user_id' => 1
+        'user_id' => 2
     ]);
 
     Set::factory()->create([
@@ -46,19 +46,19 @@ class DatabaseSeeder extends Seeder
             'description' => 'learning about computer parts',
             'reviewer' => [
                 [
-                    "term" => "network interface card",
+                    "term" => "network interface cardiB",
                     "definition" => "a device used to connect to internet"
                 ],
                 [
-                    "term" => "flash drive",
+                    "term" => "flash driveer",
                     "definition" => "a secondary drive used to store data/files",
                 ],
                 [
-                    "term" => "random access memory",
+                    "term" => "random access memories",
                     "definition" => "a primary storage"
                 ]
             ],
-        'user_id' => 1
+        'user_id' => 2
     ]);
     }
 }
