@@ -20,4 +20,5 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user/{user_id}/sets', [SetController::class, 'index']);
+    Route::post('/user/{user_id}/create', [SetController::class, 'store']);
 });
