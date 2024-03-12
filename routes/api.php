@@ -20,5 +20,8 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user/{user_id}/sets', [SetController::class, 'index']);
+    Route::get('/set', [SetController::class, 'show']);
     Route::post('/create', [SetController::class, 'store']);
+    Route::patch('/edit/set/{id}', [SetController::class, 'update']);
+    Route::delete('/delete/set/{id}', [SetController::class, 'destroy']);
 });

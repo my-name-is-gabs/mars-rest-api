@@ -38,7 +38,7 @@ class SetController extends Controller
             "user_id" => $request->user_id
         ]);
 
-        if(!$created_set) return $this->error("There is an error encoutered");
+        if (!$created_set) return $this->error("There is an error encoutered");
 
         return $this->success($created_set, "Set created successfully", 201);
     }
@@ -46,17 +46,30 @@ class SetController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+        $query = Set::where("name", "like", "%".$request->search."%")->get();
+
+        if (!$query || empty($query)) return $this->error("Set not found", 404);
+
+        return response()->json(["data" => $query], 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreSetRequest $request, string $id)
     {
-        //
+        $updated = Set::find($id)->update([
+            "name" => $request->name,
+            "description" => $request->description,
+            "reviewer" => $request->reviewer,
+            "user_id" => $request->user_id
+        ]);
+
+        if (!$updated || empty($updated)) return $this->error("Error was encountered in updating the set", 401);
+
+        return response()->json(["message" => "Update successful"], 200);
     }
 
     /**
@@ -64,6 +77,12 @@ class SetController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $destroy = Set::destroy($id);
+
+        if (!$destroy) return $this->error("Error encountered while deleting the set");
+
+        echo $destroy;
+
+        return response()->json(["message" => "Set was successfully deleted"], 200);
     }
 }
